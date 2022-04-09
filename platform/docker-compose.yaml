@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  ngdevkit-server:
+    container_name: ngdevkit-server
+    build: ./ngdevkit-server
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    network_mode: host
