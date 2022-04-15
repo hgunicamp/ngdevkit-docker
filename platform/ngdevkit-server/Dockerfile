@@ -9,14 +9,29 @@ RUN \
 RUN \
   apt install \
   build-essential \
+  cmake \
+  cmake-extras \
+  extra-cmake-modules \
   gpg \
   git-all \
   curl \
   wget \
   exuberant-ctags \
   python3 \
+  libkf5config-dev \
+  libkf5auth-dev \
+  libkf5package-dev \
+  libkf5declarative-dev \
+  libkf5coreaddons-dev \
+  libkf5kcmutils-dev \
+  libkf5i18n-dev \
+  libqt5core5a \
+  libqt5widgets5 \
+  libqt5gui5 \
+  libqt5qml5 \
   qt5-qmake \
   qtbase5-dev \
+  gettext \
   vim \
   zsh \
   zplug \
@@ -50,4 +65,14 @@ RUN cd /tmp && \
   make install && \
   cd /tmp && \
   rm -rf ${GEDE_PACKAGE} ${GEDE_SRC_DIR}
+
+# Installing KDbg.
+RUN cd /tmp && \
+  git clone -b maint https://github.com/j6t/kdbg.git && \
+  cd kdbg && \
+  cmake . && \
+  make && \
+  make install && \
+  cd /tmp && \
+  rm -rf kdbg
 
