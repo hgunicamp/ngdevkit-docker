@@ -19,3 +19,7 @@ platform/ngdevkit-server/config/remote/.zcompdump*
 platform/ngdevkit-server/config/remote/.lesshst
 platform/ngdevkit-server/config/remote/.config/gede2/gede2.ini
 platform/ngdevkit-server/config/remote/.config/kdbgrc
+
+# Removing files which were included only to fix local development evironemt (non docker).
+compile_flags.txt
+projects/m68k-neogeo-include
