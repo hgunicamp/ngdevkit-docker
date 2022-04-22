@@ -15,10 +15,10 @@ void *getExtraInfo(loopContext_t *self) { return self->extraInfo; }
 void prepareContext(loopContext_t *self, void *extraInfo) {
   self->active = false;
   self->extraInfo = extraInfo;
-  self->isActive = &isActive;
-  self->activate = &activeContext;
-  self->deactivate = &deactiveContext;
-  self->getExtraInfo = &getExtraInfo;
+  self->isActive = isActive;
+  self->activate = activeContext;
+  self->deactivate = deactiveContext;
+  self->getExtraInfo = getExtraInfo;
 }
 
 // Dynamically creates a new context.

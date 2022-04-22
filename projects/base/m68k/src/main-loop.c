@@ -27,9 +27,10 @@ void prepareMainLoop(mainLoop_t *mainLoop, void (*frame)(mainLoop_t *),
                      void *extraInfo) {
   // Installing functions.
   prepareContext(mainLoop->getContext(mainLoop), extraInfo);
+  mainLoop->getContext = getContext;
   mainLoop->frame = frame;
-  mainLoop->run = &mainLoopRun;
-  mainLoop->stop = &stopMainLoop;
+  mainLoop->run = mainLoopRun;
+  mainLoop->stop = stopMainLoop;
 }
 
 // Main Loop constructor (Dynamic preparation).
