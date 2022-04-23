@@ -1,7 +1,7 @@
 // Defining the abstract struture which informs the current loop context.
 
-#ifndef __M68K_LOOP_CONTEXT__
-#define __M68K_LOOP_CONTEXT__
+#ifndef __NG_DEVKIT_M68K_LOOP_CONTEXT__
+#define __NG_DEVKIT_M68K_LOOP_CONTEXT__
 
 #include <stdbool.h>
 
@@ -23,4 +23,4 @@ void prepareContext(loopContext_t *self, void *extraInfo);
 // Dynamically creates a new context.
 loopContext_t *newLoopContext(void *context);
 
-#endif // __M68K_LOOP_CONTEXT__
+#endif // __NG_DEVKIT_M68K_LOOP_CONTEXT__

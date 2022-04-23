@@ -1,4 +1,4 @@
-#include "../include/main-loop.h"
+#include "../../include/game-loop/main-loop.h"
 #include <ngdevkit/ng-video.h>
 #include <stdlib.h>
 

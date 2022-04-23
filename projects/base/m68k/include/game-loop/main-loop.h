@@ -1,9 +1,9 @@
 // Defining the abstract struture which represents the main loop.
 
-#ifndef __M68K_MAIN_LOOP__
-#define __M68K_MAIN_LOOP__
+#ifndef __NG_DEVKIT_M68K_MAIN_LOOP__
+#define __NG_DEVKIT_M68K_MAIN_LOOP__
 
-#include "../include/loop-context.h"
+#include "./loop-context.h"
 
 // Structure which will represent the game loop.
 typedef struct mainLoop {
@@ -20,4 +20,4 @@ void prepareMainLoop(mainLoop_t *mainLoop, void (*frame)(mainLoop_t *),
 
 mainLoop_t *newMainLoop(void(*frame), void *extraInfo);
 
-#endif // __M68K_MAIN_LOOP__
+#endif // __NG_DEVKIT_M68K_MAIN_LOOP__
