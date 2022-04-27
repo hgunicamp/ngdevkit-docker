@@ -5,8 +5,7 @@
 
 // Structure which will represent the initialization process step.
 typedef struct initStep {
-  // State properties.
-  void (*internalFunct)(void *args);
+  // Stage properties.
   void *args;
   struct initStep *nextStep;
   struct initStep *previousStep;
