@@ -1,4 +1,4 @@
-#include "../../include/game-loop/loop-context.h"
+#include <game-loop/loop-context.h>
 #include <stdbool.h>
 #include <stdlib.h>
 

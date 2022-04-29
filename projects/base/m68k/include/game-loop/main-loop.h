@@ -3,7 +3,7 @@
 #ifndef __NG_DEVKIT_M68K_MAIN_LOOP__
 #define __NG_DEVKIT_M68K_MAIN_LOOP__
 
-#include "./loop-context.h"
+#include <game-loop/loop-context.h>
 
 // Structure which will represent the game loop.
 typedef struct mainLoop {

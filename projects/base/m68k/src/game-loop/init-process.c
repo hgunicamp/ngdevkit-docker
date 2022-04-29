@@ -1,4 +1,4 @@
-#include "../../include/game-loop/init-process.h"
+#include <game-loop/init-process.h>
 #include <stddef.h>
 #include <stdlib.h>
 
