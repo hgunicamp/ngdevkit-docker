@@ -8,8 +8,8 @@
 // Structure which will represent loop context.
 typedef struct loopContext {
   // Context state.
-  bool active;
-  void *extraInfo;
+  bool _active;
+  void *_extraInfo;
   // Functions to control the context state.
   bool (*isActive)(struct loopContext *);
   void (*activate)(struct loopContext *);

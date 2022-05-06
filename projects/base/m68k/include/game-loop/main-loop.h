@@ -7,9 +7,9 @@
 
 // Structure which will represent the game loop.
 typedef struct mainLoop {
-  loopContext_t context;
+  loopContext_t _context;
   loopContext_t *(*getContext)(struct mainLoop *);
-  void (*frame)(struct mainLoop *);
+  void (*_frame)(struct mainLoop *);
   void (*run)(struct mainLoop *);
   void (*stop)(struct mainLoop *);
 } mainLoop_t;

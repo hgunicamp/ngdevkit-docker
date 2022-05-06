@@ -3,21 +3,21 @@
 #include <stdlib.h>
 
 // Retrieves the context structure for the current loop.
-loopContext_t *getContext(mainLoop_t *self) { return &self->context; }
+loopContext_t *_getContext(mainLoop_t *self) { return &self->_context; }
 
 // Defines the behavior for each frame.
-void mainLoopRun(mainLoop_t *self) {
+void _mainLoopRun(mainLoop_t *self) {
   loopContext_t *context = self->getContext(self);
   context->activate(context);
   while (context->isActive(context)) {
-    self->frame(self);
+    self->_frame(self);
     // Wait until the end of the current frame time slice.
     ng_wait_vblank();
   }
 }
 
 // Informs that the current frame will be the last one in the loop.
-void stopMainLoop(mainLoop_t *self) {
+void _stopMainLoop(mainLoop_t *self) {
   loopContext_t *context = self->getContext(self);
   context->deactivate(context);
 }
@@ -27,17 +27,17 @@ void prepareMainLoop(mainLoop_t *mainLoop, void (*frame)(mainLoop_t *),
                      void *extraInfo) {
   // Installing functions.
   prepareContext(mainLoop->getContext(mainLoop), extraInfo);
-  mainLoop->getContext = getContext;
-  mainLoop->frame = frame;
-  mainLoop->run = mainLoopRun;
-  mainLoop->stop = stopMainLoop;
+  mainLoop->getContext = _getContext;
+  mainLoop->_frame = frame;
+  mainLoop->run = _mainLoopRun;
+  mainLoop->stop = _stopMainLoop;
 }
 
 // Main Loop constructor (Dynamic preparation).
 mainLoop_t *newMainLoop(void(*frame), void *extraInfo) {
   mainLoop_t *mainLoop = malloc(sizeof(mainLoop_t));
   // Installing functions.
-  prepareMainLoop(mainLoop, extraInfo, frame);
+  prepareMainLoop(mainLoop, frame, extraInfo);
   // Game loop structure.
   return mainLoop;
 }

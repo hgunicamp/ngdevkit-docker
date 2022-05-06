@@ -7,8 +7,8 @@
 typedef struct initStep {
   // Stage properties.
   void *args;
-  struct initStep *nextStep;
-  struct initStep *previousStep;
+  struct initStep *_nextStep;
+  struct initStep *_previousStep;
   // Methods references.
   struct initStep *(*setNext)(struct initStep *, struct initStep *);
   void (*run)(struct initStep *);
@@ -27,6 +27,6 @@ struct initStep *prepareGuardStep(initStep_t *self);
 struct initStep *prepareCleanReflectionStep();
 
 // Initialization step constructor.
-struct initStep *newInitstep(void(*stepFunct), void *args);
+struct initStep *newInitStep(void(*stepFunct), void *args);
 
 #endif // __NG_DEVKIT_M68K_INIT_PROCESS__

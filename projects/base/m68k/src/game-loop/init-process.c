@@ -5,7 +5,7 @@
 // Executes the chained initialization steps recursively.
 void _runChainStep(initStep_t *self) {
   self->run(self);
-  initStep_t *nextStep = self->nextStep;
+  initStep_t *nextStep = self->_nextStep;
   if (NULL == nextStep) {
     return;
   }
@@ -14,7 +14,7 @@ void _runChainStep(initStep_t *self) {
 
 // Clean initialization steps recursively.
 void _cleanChainStep(initStep_t *self) {
-  initStep_t *previousStep = self->previousStep;
+  initStep_t *previousStep = self->_previousStep;
   if (NULL == previousStep) {
     return;
   }
@@ -26,8 +26,8 @@ void _cleanChainStep(initStep_t *self) {
 
 // Fluent set next stage function.
 initStep_t *_setNextStep(initStep_t *self, initStep_t *nextStep) {
-  self->nextStep = nextStep;
-  nextStep->previousStep = self;
+  self->_nextStep = nextStep;
+  nextStep->_previousStep = self;
   return nextStep;
 }
 
@@ -35,8 +35,8 @@ initStep_t *_setNextStep(initStep_t *self, initStep_t *nextStep) {
 initStep_t *prepareStep(initStep_t *self, void(*stepFunct), void *args) {
   self->run = stepFunct;
   self->args = args;
-  self->nextStep = NULL;
-  self->previousStep = NULL;
+  self->_nextStep = NULL;
+  self->_previousStep = NULL;
   self->setNext = _setNextStep;
   self->_runChainStep = _runChainStep;
   self->_cleanChainStep = _cleanChainStep;
@@ -44,7 +44,7 @@ initStep_t *prepareStep(initStep_t *self, void(*stepFunct), void *args) {
 }
 
 // Function to trigger the chained execution.
-void _pass(initStep_t *self) { self->_runChainStep(self->nextStep); }
+void _pass(initStep_t *self) { self->_runChainStep(self->_nextStep); }
 
 // Initial step in the initialization chain.
 initStep_t *prepareGuardStep(initStep_t *self) {
@@ -56,11 +56,11 @@ void _cleanReflection(initStep_t *self) { self->_cleanChainStep(self); }
 
 // Prepare the clean reflection step.
 initStep_t *prepareCleanReflectionStep() {
-  return newInitstep(_cleanReflection, NULL);
+  return newInitStep(_cleanReflection, NULL);
 }
 
 // Initialization step constructor.
-initStep_t *newInitstep(void(*stepFunct), void *args) {
+initStep_t *newInitStep(void(*stepFunct), void *args) {
   initStep_t *initStep = malloc(sizeof(initStep_t));
   // Preparing the stage.
   return prepareStep(initStep, stepFunct, args);
